@@ -21,29 +21,29 @@ public class PlaneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.rotation * Vector3.left * _speed;
+        transform.position += transform.rotation * Vector3.left * _speed * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.A))
         {
             transform.eulerAngles -= Vector3.up * Time.deltaTime * _rotationSpeed;
-            if(testVal >= 0) testVal -= 1 * Time.deltaTime;
+            if (testVal >= 0) testVal -= 1 * Time.deltaTime;
 
         }
         else if (Input.GetKey(KeyCode.D))
         {
             transform.eulerAngles += Vector3.up * Time.deltaTime * _rotationSpeed;
-            if(testVal <= 1) testVal += 1 * Time.deltaTime;
-            
-        }else{
-            if(testVal < 0.5) testVal += 1 * Time.deltaTime;
-            if(testVal > 0.5) testVal -= 1 * Time.deltaTime;
+            if (testVal <= 1) testVal += 1 * Time.deltaTime;
 
+        }
+        else
+        {
+            if (testVal < 0.5) testVal += 1 * Time.deltaTime;
+            if (testVal > 0.5) testVal -= 1 * Time.deltaTime;
         }
 
         foreach (var plane in _planes)
         {
-            plane.localEulerAngles = Vector3.Lerp(Vector3.left * 25,Vector3.left * -25,testVal);
+            plane.localEulerAngles = Vector3.Lerp(Vector3.left * 25, Vector3.left * -25, testVal);
         }
         //_plane.localEulerAngles = Vector3.Lerp(Vector3.left * 25,Vector3.left * -25,testVal);
     }
