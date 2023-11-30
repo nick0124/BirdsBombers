@@ -40,8 +40,4 @@ public class Explosion : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnCollisionEnter(Collision other) {
-        Debug.Log("explose");
-    }
 }
